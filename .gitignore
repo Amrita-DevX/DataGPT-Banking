@@ -1,0 +1,31 @@
+
+# Python bytecode files - compiled Python code, not needed
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment - each developer creates their own
+venv/
+env/
+ENV/
+
+# Database files - will be created automatically
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE settings - personal preferences
+.vscode/
+.idea/
+
+# Environment variables - contains secrets
+.env
+.env.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Streamlit secrets - API keys
+.streamlit/secrets.toml
