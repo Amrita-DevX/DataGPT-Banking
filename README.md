@@ -2,8 +2,6 @@
 
 Natural language to SQL analytics tool powered by AI. Ask questions about banking data in plain English and get instant insights with interactive visualizations.
 
-### Live App: https://datagpt-banking.streamlit.app/
-
 ## Overview
 
 DataGPT is an AI-powered data analysis tool that enables users to query banking databases using natural language. The application automatically converts plain English questions into SQL queries, executes them, and presents results with appropriate visualizations. Built to demonstrate practical AI integration, prompt engineering, and full-stack data application development.
