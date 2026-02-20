@@ -2,7 +2,7 @@
 
 Natural language to SQL analytics tool powered by AI. Ask questions about banking data in plain English and get instant insights with interactive visualizations.
 
-## Live App: https://datagpt-banking.streamlit.app/
+### Live App: https://datagpt-banking.streamlit.app/
 
 ## Overview
 
