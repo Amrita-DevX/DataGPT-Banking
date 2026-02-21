@@ -164,6 +164,29 @@ The sample database includes five main tables:
 6. Visualization: Results processed and appropriate chart type selected
 7. Display: Results shown with interactive charts and download option
 
+## Architecture Flow
+```mermaid
+graph TD
+    A[User Interface - Streamlit] --> B[Natural Language Question]
+    B --> C[Prompt Engineering Module]
+    C --> |Schema + Rules| D[Groq API - LLaMA 3.3]
+    D --> E[Generated SQL Query]
+    E --> F[SQL Validator]
+    F --> G{Safe Query?}
+    G -->|Yes| H[SQLite Database]
+    G -->|No| I[Error Message]
+    H --> J[Query Results]
+    J --> K[Visualizer]
+    K --> L[Display Results + Chart]
+    
+    style D fill:#4CAF50
+    style F fill:#FFB74D
+    style G fill:#FF8C00
+    style I fill:#E53935
+    style L fill:#388E3C
+```
+```
+
 ### Security Features
 
 - Read-only database access (only SELECT queries allowed)
