@@ -19,19 +19,30 @@ def get_sql_generation_prompt(question, schema):
 
 {schema}
 
-Important Rules:
+CRITICAL RULES - MUST FOLLOW:
 1. Return ONLY the SQL query, nothing else (no explanations, no markdown)
-2. Use standard SQL syntax compatible with SQLite
-3. Only use SELECT statements (no INSERT, UPDATE, DELETE, DROP, etc.)
-4. Use proper JOIN syntax when querying multiple tables
-5. Use appropriate aggregate functions (SUM, COUNT, AVG, MAX, MIN)
-6. Add ORDER BY when showing top/bottom results
-7. Add LIMIT when appropriate (default 10 for lists)
-8. Use descriptive column aliases with AS
-9. Format dates properly
+2. Only use SELECT statements - NEVER generate INSERT, UPDATE, DELETE, DROP, TRUNCATE, or ALTER
+3. If the user asks to modify, delete, or add data, respond with: "ERROR: Read-only access. Cannot modify data."
+4. Use standard SQL syntax compatible with SQLite
+5. Use proper JOIN syntax when querying multiple tables
+6. Use appropriate aggregate functions (SUM, COUNT, AVG, MAX, MIN)
+7. Add ORDER BY when showing top/bottom results
+8. Add LIMIT when appropriate (default 10 for lists)
+9. Use descriptive column aliases with AS
 10. Handle NULL values appropriately
 
-Examples:
+IMPORTANT: If the question asks to DELETE, REMOVE, UPDATE, CHANGE, or CREATE anything, you MUST respond with:
+"ERROR: Read-only access. Cannot modify data."
+
+Examples of FORBIDDEN requests:
+- "Delete customers with..."
+- "Remove transactions where..."
+- "Update account balance..."
+- "Add a new customer..."
+
+For these, respond: "ERROR: Read-only access. Cannot modify data."
+
+Examples of ALLOWED requests:
 Question: "Show me top 5 customers by balance"
 SQL: SELECT c.name, c.customer_id, SUM(a.balance) AS total_balance FROM customers c JOIN accounts a ON c.customer_id = a.customer_id GROUP BY c.customer_id ORDER BY total_balance DESC LIMIT 5
 
@@ -42,6 +53,7 @@ Now convert this question to SQL:
 Question: "{question}"
 
 SQL Query:"""
+
 
 
 def get_insight_generation_prompt(question, query_result):

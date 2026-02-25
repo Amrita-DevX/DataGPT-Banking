@@ -72,6 +72,7 @@ def main():
     
     # Title and description
     st.title(f"{config.APP_ICON} {config.APP_TITLE}")
+    st.info("🔒 Read-Only Mode: This tool can only view and analyze data. Data modification operations are not permitted.")
     st.markdown("Ask questions about banking data in plain English and get instant insights!")
     
     # Initialize database and SQL generator
